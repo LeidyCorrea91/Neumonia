@@ -167,10 +167,10 @@ copies of the Software.
 ```
 
 ---
-## 📩 Contacto
-Si tienes alguna pregunta, contáctame en:
-📧 Email: ljcorrea@email.com
-📌 GitHub: [https://github.com/tuusuario](https://github.com/tuusuario)
+## 📩 Integrantes
+📌 Jose Israel Perez
+📌 Diego Juvinao
+📌 Leidy Correa
 
 ---
 🚀 **¡Listo para ejecutar el detector de neumonía con IA!** 🎯
