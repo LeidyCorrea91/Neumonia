@@ -143,12 +143,12 @@ apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
 
 ## Arquitectura de Código
 
-- `detector_neumonia.py`: Contiene la lógica principal del modelo.
-- `integrator.py`: Integra los módulos y devuelve la clase, probabilidad y el mapa de calor.
-- `read_img.py`: Carga imágenes DICOM y las convierte en arrays.
-- `preprocess_img.py`: Preprocesa la imagen (redimensionado, escala de grises, ecualización).
-- `load_model.py`: Carga el modelo entrenado `conv_MLP_84.h5`.
-- `grad_cam.py`: Genera el mapa de calor con Grad-CAM.
+- **detector_neumonia.py**: Contiene la lógica principal del modelo.
+- **integrator.py**: Integra los módulos y devuelve la clase, probabilidad y el mapa de calor.
+- **read_img.py**: Carga imágenes DICOM y las convierte en arrays.
+- **preprocess_img.py**: Preprocesa la imagen (redimensionado, escala de grises, ecualización).
+- **load_model.py**: Carga el modelo entrenado `conv_MLP_84.h5`.
+- **grad_cam.py**: Genera el mapa de calor con Grad-CAM.
 ---
 
 ## 📜 Licencia
