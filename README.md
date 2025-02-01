@@ -118,6 +118,7 @@ Ejemplo de salida:
     "heatmap": "gradcam_output.png"
 }
 ```
+![image](https://github.com/user-attachments/assets/b4ea1fdf-9dbf-4ffd-8399-9bd186e37b1a)
 
 ---
 
