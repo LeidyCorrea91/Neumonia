@@ -126,13 +126,13 @@ Ejemplo de salida:
 ### **🔹 Error `ModuleNotFoundError: No module named 'pydicom'`**
 📌 Solución:
 ```bash
-docker run --rm detector-neumonia:jg pip install pydicom
+docker run --rm detector-neumonia pip install pydicom
 ```
 
 ### **🔹 Error `ImportError: libGL.so.1: cannot open shared object file`**
 📌 Solución:
 ```bash
-docker build --no-cache -t detector-neumonia:jg .
+docker build --no-cache -t detector-neumonia .
 ```
 Si persiste, accede al contenedor e instala manualmente:
 ```bash
@@ -169,7 +169,7 @@ copies of the Software.
 ---
 ## 📩 Contacto
 Si tienes alguna pregunta, contáctame en:
-📧 Email: example@email.com
+📧 Email: ljcorrea@email.com
 📌 GitHub: [https://github.com/tuusuario](https://github.com/tuusuario)
 
 ---
