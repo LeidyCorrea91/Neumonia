@@ -1,21 +1,28 @@
-from read_img import read_dicom_file
-from preprocess_img import preprocess_image
-from load_model import load_trained_model
-from grad_cam import generate_grad_cam
+import cv2
 import numpy as np
+from tensorflow.keras.models import load_model
+from read_img import read_image
+
+# Cargar el modelo
+modelo = load_model("/app/conv_MLP_84.h5")
 
 def predict_image(image_path):
-    """Realiza la predicción sobre la imagen preprocesada y genera el Grad-CAM."""
-    img_rgb = read_dicom_file(image_path)
-    preprocessed_img = preprocess_image(img_rgb)
-    
-    model = load_trained_model()
-    predictions = model.predict(preprocessed_img)
-    predicted_class = np.argmax(predictions)
-    probability = np.max(predictions) * 100
-    labels = ["Bacteriana", "Normal", "Viral"]
+    """Carga una imagen JPG y la usa para predecir neumonía con el modelo."""
+    image = read_image(image_path)  # Cargar imagen en escala de grises
+    image = cv2.resize(image, (512, 512))  # Ajustar al tamaño requerido por el modelo
+    image = image.astype(np.float32) / 255.0  # Normalizar la imagen
 
-    grad_cam = generate_grad_cam(preprocessed_img, model)
-    
-    return labels[predicted_class], probability, grad_cam
+    # Expandir dimensiones para que coincida con la entrada del modelo (batch_size, height, width, channels)
+    image = np.expand_dims(image, axis=0)
+    image = np.expand_dims(image, axis=-1)  # Agregar canal si el modelo lo requiere
 
+    # Hacer la predicción con el modelo
+    prediction = modelo.predict(image)
+
+    # Extraer el primer valor del array de predicciones
+    pred_value = prediction[0][0]  # Obtener el primer elemento
+
+    label = "Neumonía" if pred_value > 0.5 else "Normal"
+    prob = pred_value * 100  # Convertir probabilidad a porcentaje
+
+    return label, prob
