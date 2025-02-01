@@ -1,31 +1,25 @@
-from integrator import predict_image
-from tkinter import filedialog
-from PIL import ImageTk, Image
+import argparse
+import cv2
+import numpy as np
+from integrator import predict_image  
 
-class App:
-    def __init__(self):
-        self.root = Tk()
-        self.root.title("Detector de Neumonía")
 
-        # Botón para cargar imagen
-        self.button_load = ttk.Button(self.root, text="Cargar Imagen", command=self.load_img_file)
-        self.button_load.pack()
+def main():
+    # Parser de argumentos
+    parser = argparse.ArgumentParser(description="Detector de Neumonía en imágenes JPG")
+    parser.add_argument("--file", required=True, help="Ruta de la imagen JPG a analizar")
+    args = parser.parse_args()
 
-        # Botón para predecir
-        self.button_predict = ttk.Button(self.root, text="Predecir", state="disabled", command=self.run_model)
-        self.button_predict.pack()
+    print(f"Procesando la imagen: {args.file}")
 
-        self.image_path = None
-        self.root.mainloop()
-
-    def load_img_file(self):
-        self.image_path = filedialog.askopenfilename(filetypes=[("DICOM Files", "*.dcm")])
-        if self.image_path:
-            self.button_predict["state"] = "enabled"
-
-    def run_model(self):
-        label, prob, heatmap = predict_image(self.image_path)
+    try:
+        # Ejecutar la predicción con la imagen JPG
+        label, prob = predict_image(args.file)
         print(f"Predicción: {label} con {prob:.2f}% de certeza")
 
+    except Exception as e:
+        print(f"Error al procesar la imagen: {e}")
+
 if __name__ == "__main__":
-    app = App()
+    main()
+
